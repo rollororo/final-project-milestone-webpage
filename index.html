@@ -40,28 +40,30 @@
         
 
         <h1>
-            What was accomplished?
+            Interfacing with the older version of pathtracer
+        </h1>
+        <p>
+            The first step in getting our project working was to interface our project 3-2 code with the code that was provided from the older Lens Simulator spec. There were a number of small differences that all had to be caught and rectified in order to get the project functionally building. The largest difference was that the older spec used a Spectrum object to represent colors rather than a Vector3D, meaning we had to change our implementation to work with the new struct. We also needed to reuse the functions for intersection and lighting estimation and make sure they were being called correctly by the skeleton.
+    This step was mostly successful, as the application builds on Mac computers and functions normally, but it currently does not on Windows machines.
+
+        </p>
+
+
+        <h1>Lenstester</h1>
+        <p>
+            A debugging tool to check our refraction methods was implemented. This involved writing LensElement functions pass_through, intersect, and refract to handle the interaction between a ray and a lens element. Then, they could be used to write the trace and trace_backwards functions in order to simulate a ray going forwards or backwards through the whole lens system. A simple image is included below:
+        </p>
+        <img src="images/lenstester.png">
+
+        <h1>
+            Lens Parameters and Sample Generation
         </h1>
         <p>
 
         </p>
 
-
-        <h1>Preliminary Results</h1>
-        <p>
-
-        </p>
-        
-
         <h1>
-            Reflect On Progress Relative to Plan
-        </h1>
-        <p>
-
-        </p>
-
-        <h1>
-            Updated Work Plan
+            Reflection on our progress
         </h1>
         <ul>
            <li>Week 4: 4/25 - 5/1</li>
