@@ -14,6 +14,11 @@
         h1, h2, h3, h4 {
             font-family: 'Source Sans Pro', sans-serif;
         }
+        .image {
+            width: 35rem;
+            display: block;
+            margin: auto;
+        }
         </style>
         <title>CS 184</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -53,7 +58,7 @@
         <p>
             A debugging tool to check our refraction methods was implemented. This involved writing LensElement functions pass_through, intersect, and refract to handle the interaction between a ray and a lens element. Then, they could be used to write the trace and trace_backwards functions in order to simulate a ray going forwards or backwards through the whole lens system. A simple image is included below:
         </p>
-        <img src="images/lenstester.png">
+        <img src="images/lenstester.png" class="image">
 
         <h3>
             Lens Parameters and Sample Generation
@@ -62,7 +67,7 @@
             Lens and LensCamera helper functions were implemented to help out with setting focus parameters, focus depth, sampling back lens and generating a ray from sensor position and trace through the lens. The set_focus_params method calculates infinity focus, near focus, and focal length based on the thick lens approximation. The implementation of the focus_depth method now allows for the user to blur or sharpen the rendered image.
     The function back_lens_sampling involves sampling a point uniformly from the circle on the back of the lens element that is the nearest to the sensor.   The function generate_ray involves generating a ray with its origin as the sensor position and its direction is set as the direction from the sensor position towards the point sampled at the back of the lens element that is nearest to the sensor - using the back_lens_sample function.  Then, this ray is traced through the lens and if it makes it through the lens, the ray is converted into world space, otherwise, a ray that won’t hit anything is returned. An example of a fully traced and rendered image is below with Lens 2:
         </p>
-        <img src="images/rendered.png">
+        <img src="images/rendered.png" class="image">
 
         <h3>
             Reflection on our progress
