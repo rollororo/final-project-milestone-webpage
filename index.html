@@ -29,65 +29,90 @@
     <body>
 
         <h1 align="middle">CS 184 Final Project Milestone Status Report:</h1>
-        <h2 align="middle">Variable lens raytracing and enhanced camera features</h2>
+        <h2 align="middle">Mod Minecraft - Realistic Sky Rendering and Water Animation</h2>
         <!-- <br /> -->
         <!-- <h3>Members</h3> -->
         <p align="middle">
-            Amy Doo, Jordan Bell, Katlyn Ho, Su Latt Phone 
+        Terrance Wang, Lara Chu, Brandon Choy, Roland Li
         </p>
-        <a href="https://docs.google.com/presentation/d/178fre6YwUQaHOf0MooU0J5am0CIUA8MGFNkVc574TFE/edit?usp=sharing">Link to Slides</a> 
-         <a href="https://drive.google.com/file/d/1hSTB0Ur1a_hAQxx9xWkd1Xnr31i_9n2F/view?usp=sharing">Link to Video</a> 
+        <a href="https://docs.google.com/presentation/d/1pO-B0nKbodfluyE3JqMoTWfQHU7Zlr4XbejIcRYNT-w/edit?usp=sharing">Link to Slides</a>
+         <a href="https://drive.google.com/file/d/1BdSOHi2kHgnkpjstc4ruHBzxC65c3Fid/view?usp=sharing">Link to Video</a> 
         <h3>Summary</h3>
         
         <p>
-            Our project idea is to add functionality to the ray tracing engine that will allow it to render images as if the 
-            camera lens was composed of physical lenses rather than an approximation of lenses, while also being able to have 
-            the set of lenses used be based on user input. Additionally, we plan to add additional features that a real camera 
-            has, such as auto and pre-defined focus, flash, and auto brightness.  We are basing our project off of an old CS184 
-            project 3-2 specification.
+        We want to create a mod for Minecraft to allow realistic sky rendering and water animations by building out a path tracer and implementing realistic clouds, improved sky gradients, water reflections, and more.
         </p>
         
 
         <h3>
-            Interfacing with the older version of pathtracer
+            What we have accomplished
+
         </h3>
         <p>
-            The first step in getting our project working was to interface our project 3-2 code with the code that was provided from the older Lens Simulator spec. There were a number of small differences that all had to be caught and rectified in order to get the project functionally building. The largest difference was that the older spec used a Spectrum object to represent colors rather than a Vector3D, meaning we had to change our implementation to work with the new struct. We also needed to reuse the functions for intersection and lighting estimation and make sure they were being called correctly by the skeleton.
-    This step was mostly successful, as the application builds on Mac computers and functions normally, but it currently does not on Windows machines.
+        We have our local working environments set up with up-to-date versions of Minecraft and Optifine downloaded and working. We have decided to split into two different teams one working on creating realistic sky renderings and the other creating realistic water renderings for our shader. We have looked into atmospheric scattering implementations, Rayleigh scattering and Mie scattering equations, in-scattering and out-scattering. We’ve also researched and developed smaller scale shadertoy implementations of atmospheric scattering. For water animation, we have a working implementation of random noise generation and fractional Brownian motion. We can currently render the water as an interpolation of 3 colors with these two techniques applied. We have also done some research into normal and parallax mapping to add more definition to our water. Additionally, we’ve looked into various resources to learn more about the GLSL/OpenGL pipeline and how to implement a basic color manipulation Minecraft shader. We’ve also set up a loose skeleton code and file structure.
 
         </p>
 
 
-        <h3>Lenstester</h3>
+        <h3>Preliminary Results</h3>
         <p>
-            A debugging tool to check our refraction methods was implemented. This involved writing LensElement functions pass_through, intersect, and refract to handle the interaction between a ray and a lens element. Then, they could be used to write the trace and trace_backwards functions in order to simulate a ray going forwards or backwards through the whole lens system. A simple image is included below:
+        Preliminary Results
+        We have started shadertoy implementations before porting it to Minecraft. Below we have our beginnings of manipulating the sky shading and water animation.
         </p>
-        <img src="images/lenstester.png" class="image">
+        <img src="images/sky.png" class="image">
+            <img src="images/water.png" class="image">
+
 
         <h3>
-            Lens Parameters and Sample Generation
+            Plan Progress
         </h3>
         <p>
-            Lens and LensCamera helper functions were implemented to help out with setting focus parameters, focus depth, sampling back lens and generating a ray from sensor position and trace through the lens. The set_focus_params method calculates infinity focus, near focus, and focal length based on the thick lens approximation. The implementation of the focus_depth method now allows for the user to blur or sharpen the rendered image.
-    The function back_lens_sampling involves sampling a point uniformly from the circle on the back of the lens element that is the nearest to the sensor.   The function generate_ray involves generating a ray with its origin as the sensor position and its direction is set as the direction from the sensor position towards the point sampled at the back of the lens element that is nearest to the sensor - using the back_lens_sample function.  Then, this ray is traced through the lens and if it makes it through the lens, the ray is converted into world space, otherwise, a ray that won’t hit anything is returned. An example of a fully traced and rendered image is below with Lens 2:
+        We have our plan reproduced below for your convenience.
         </p>
-        <img src="images/rendered.png" class="image">
+        <p>April 13 : Setup Minecraft and download necessary resources.</p>
+        <p>April 13 - 16: Look into existing shader packs, conduct algorithm research and research how to render realistic water with a path tracer.</p>
+        <p>April 16 - 27: Implement a good path tracer and compare performance to existing path tracer mods.</p>
+        <p>April 27 - May 4: Implement water rendering: add texture, refraction, and reflection to the water.</p>
+        <p>May 4 - May 11: Implement sky rendering: retexture clouds and add natural lighting</p>
+
+        <p>We have completed the local setup of Minecraft and Optifine. We have a working understanding of the GLSL rendering pipeline and have done research on random noise generation and Brownian motion for water and scattering algorithms and ray marching for skies. Since Minecraft is a rasterized game, we are no longer working on implementing path tracing.
+
+        </p>
 
         <h3>
-            Reflection on our progress
+            Updated Work Plan
         </h3>
 
         <p>
-            Our goal was to have the multi-lense system implemented by the milestone deadline and rending good images. We’ve mostly hit that goal, with only a bug that’s making our images darker than they should be left to fix. We can fix it before the end of this week and then we will be back on track for starting the implementation of auto focus this week, as well as the smaller workload tasks that we would like to implement such as flash and adding brightness to the image.
+
+        April 28th - 29th: Finish shader toy implementations</p>
+
+        <p>April 30th - May 4th: Begin porting code and configuring for Minecraft</p>
+
+        <p>May 5th: Create final presentation slides and do a practice run</p>
+
+        <p>ay 6th: Final Presentation</p>
+
+        <p>May 7th - 10th: Write final report webpage and record project video</p>
+
+        <p>May 11th: done!
+
         </p>
-        <ul>
-           <li>Week 4: 4/25 - 5/1</li>
-           <ul><li>Milestone due 4/27 + continue working on code</li></ul>
-           <li>Week 5: 5/2 - 5/8</li>
-           <ul><li>Finalize code + final presentations 5/6</li></ul>
-           <li>Week 6: 5/9 - 5/11</li>
-           <ul><li>Final deliverables due 5/11</li></ul>
-         </ul>
+        
+        <h3>
+            Minimal Goals
+        </h3>
+        <p> Water - wavy, reflective water</p>
+        <p>Sky - atmospheric scattering</p>
+
+        
+        <h3>
+            Stretch Goals
+        </h3>
+        
+        <p> Water - foam, bubbles, refraction, view from inside water, cartoon water</p>
+        <p>Sky - realistic clouds</p>
+        <p>Other - animal</p>
         
          
 
